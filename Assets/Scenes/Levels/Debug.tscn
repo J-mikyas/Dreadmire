@@ -1,16 +1,19 @@
 [gd_scene format=3 uid="uid://bhnm75osudm6y"]
 
-[ext_resource type="Texture2D" uid="uid://dpeayjce48v1a" path="res://Assets/Sprites/Tmp/DebugTexture.png" id="1_mtx47"]
+[ext_resource type="Texture2D" uid="uid://bo1to1nijuikq" path="res://Assets/Sprites/Tmp/DebugTexture.png" id="1_mtx47"]
 [ext_resource type="PackedScene" uid="uid://dmslwauil54sw" path="res://Assets/Scenes/Characters/player.tscn" id="2_fwket"]
-[ext_resource type="Texture2D" uid="uid://kj2nupgv8isd" path="res://Assets/Sprites/Tmp/ball.png" id="3_s6kse"]
-[ext_resource type="Texture2D" uid="uid://lqu1y8h16hvu" path="res://Assets/Sprites/Tmp/box.png" id="4_1kmd0"]
+[ext_resource type="Texture2D" uid="uid://cg782lsxwyhlm" path="res://Assets/Sprites/Tmp/ball.png" id="3_s6kse"]
+[ext_resource type="Texture2D" uid="uid://kw4w5pb32euc" path="res://Assets/Sprites/Tmp/box.png" id="4_1kmd0"]
+[ext_resource type="Texture2D" uid="uid://b60imrh87c5h4" path="res://Assets/Sprites/Tmp/prism.png" id="5_1kmd0"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r7bme"]
-radius = 2.515667
-height = 6.385933
+[sub_resource type="CircleShape2D" id="CircleShape2D_1kmd0"]
+radius = 10.164812
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r7bme"]
-size = Vector2(6.0939827, 3.8779905)
+size = Vector2(5.3322363, 2.9189787)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3564x"]
+size = Vector2(17.48624, 38.932037)
 
 [node name="Debug" type="Node2D" unique_id=1027687373]
 
@@ -27,29 +30,42 @@ position = Vector2(566, 335)
 
 [node name="Ball" type="StaticBody2D" parent="Level" unique_id=1453955183]
 y_sort_enabled = true
-position = Vector2(9, -77)
+position = Vector2(9, -71.065)
 
 [node name="Sprite2D" type="Sprite2D" parent="Level/Ball" unique_id=13911849]
 position = Vector2(326.00003, 313)
-scale = Vector2(10.335227, 10.335227)
+scale = Vector2(8.17716, 8.17716)
 texture = ExtResource("3_s6kse")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Ball" unique_id=1540163452]
-position = Vector2(327.00006, 329.00003)
+position = Vector2(326.00003, 325.065)
 rotation = 1.5707964
-scale = Vector2(10.335227, 10.335227)
-shape = SubResource("CapsuleShape2D_r7bme")
+scale = Vector2(3.471086, 3.471086)
+shape = SubResource("CircleShape2D_1kmd0")
 
 [node name="Box" type="StaticBody2D" parent="Level" unique_id=1438534868]
 y_sort_enabled = true
-position = Vector2(11, -86)
+position = Vector2(11, -99.685)
 
 [node name="Sprite2D" type="Sprite2D" parent="Level/Box" unique_id=449992920]
-position = Vector2(326.00003, 494.00003)
-scale = Vector2(14.440475, 14.440475)
+position = Vector2(324, 507)
+scale = Vector2(8.256476, 8.256476)
 texture = ExtResource("4_1kmd0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Box" unique_id=2113222808]
-position = Vector2(326, 509)
-scale = Vector2(14.440475, 14.440475)
+position = Vector2(324, 515.9547)
+scale = Vector2(17.335974, 16.628887)
 shape = SubResource("RectangleShape2D_r7bme")
+
+[node name="Prism" type="StaticBody2D" parent="Level" unique_id=719914778]
+position = Vector2(336, 524.675)
+
+[node name="Sprite2D" type="Sprite2D" parent="Level/Prism" unique_id=1713131155]
+position = Vector2(-2, 21.765)
+scale = Vector2(7.984882, 7.984882)
+texture = ExtResource("5_1kmd0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Prism" unique_id=2059581035]
+position = Vector2(1, 33.325012)
+scale = Vector2(5.476715, 0.9677862)
+shape = SubResource("RectangleShape2D_3564x")
