@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://bhnm75osudm6y"]
 
-[ext_resource type="Texture2D" uid="uid://rbih2f0s6tye" path="res://Assets/Sprites/Tmp/DebugTexture.png" id="1_mtx47"]
+[ext_resource type="Texture2D" uid="uid://dpeayjce48v1a" path="res://Assets/Sprites/Tmp/DebugTexture.png" id="1_mtx47"]
 [ext_resource type="PackedScene" uid="uid://dmslwauil54sw" path="res://Assets/Scenes/Characters/player.tscn" id="2_fwket"]
-[ext_resource type="Texture2D" uid="uid://c6gc0rkf3rg0w" path="res://Assets/Sprites/Tmp/ball.png" id="3_s6kse"]
-[ext_resource type="Texture2D" uid="uid://bwgofth707eaj" path="res://Assets/Sprites/Tmp/box.png" id="4_1kmd0"]
+[ext_resource type="Texture2D" uid="uid://kj2nupgv8isd" path="res://Assets/Sprites/Tmp/ball.png" id="3_s6kse"]
+[ext_resource type="Texture2D" uid="uid://lqu1y8h16hvu" path="res://Assets/Sprites/Tmp/box.png" id="4_1kmd0"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r7bme"]
 radius = 2.515667
@@ -19,32 +19,37 @@ position = Vector2(575.5, 323.5)
 scale = Vector2(31.635555, 35.470947)
 texture = ExtResource("1_mtx47")
 
-[node name="Player" parent="." unique_id=1130819150 instance=ExtResource("2_fwket")]
+[node name="Level" type="Node2D" parent="." unique_id=1475033954]
+y_sort_enabled = true
+
+[node name="Player" parent="Level" unique_id=1130819150 instance=ExtResource("2_fwket")]
 position = Vector2(566, 335)
 
-[node name="Ball" type="StaticBody2D" parent="." unique_id=1453955183]
+[node name="Ball" type="StaticBody2D" parent="Level" unique_id=1453955183]
+y_sort_enabled = true
 position = Vector2(9, -77)
 
-[node name="Sprite2D" type="Sprite2D" parent="Ball" unique_id=13911849]
+[node name="Sprite2D" type="Sprite2D" parent="Level/Ball" unique_id=13911849]
 position = Vector2(326.00003, 313)
 scale = Vector2(10.335227, 10.335227)
 texture = ExtResource("3_s6kse")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball" unique_id=1540163452]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Ball" unique_id=1540163452]
 position = Vector2(327.00006, 329.00003)
 rotation = 1.5707964
 scale = Vector2(10.335227, 10.335227)
 shape = SubResource("CapsuleShape2D_r7bme")
 
-[node name="Box" type="StaticBody2D" parent="." unique_id=1438534868]
+[node name="Box" type="StaticBody2D" parent="Level" unique_id=1438534868]
+y_sort_enabled = true
 position = Vector2(11, -86)
 
-[node name="Sprite2D" type="Sprite2D" parent="Box" unique_id=449992920]
+[node name="Sprite2D" type="Sprite2D" parent="Level/Box" unique_id=449992920]
 position = Vector2(326.00003, 494.00003)
 scale = Vector2(14.440475, 14.440475)
 texture = ExtResource("4_1kmd0")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Box" unique_id=2113222808]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Box" unique_id=2113222808]
 position = Vector2(326, 509)
 scale = Vector2(14.440475, 14.440475)
 shape = SubResource("RectangleShape2D_r7bme")
