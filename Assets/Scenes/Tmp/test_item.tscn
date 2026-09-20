@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://byb4y2fiq5kck"]
+
+[ext_resource type="PackedScene" uid="uid://c1d56f5ow5ltc" path="res://Assets/Scenes/Objects/Classes/Item.tscn" id="1_nicve"]
+[ext_resource type="Texture2D" uid="uid://dqtqrbh5r3dsa" path="res://Assets/Sprites/Tmp/test_item.png" id="2_wd636"]
+
+[node name="Test_Item" unique_id=1955668158 instance=ExtResource("1_nicve")]
+
+[node name="Sprite2D" parent="." index="1" unique_id=1374943324]
+scale = Vector2(4.4873166, 4.4873166)
+texture = ExtResource("2_wd636")

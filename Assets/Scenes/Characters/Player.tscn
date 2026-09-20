@@ -31,3 +31,5 @@ scale = Vector2(6.5688844, 6.5688844)
 [node name="HandSprite2D" type="Sprite2D" parent="Hand" unique_id=2057682923]
 position = Vector2(-10.504, 0)
 texture = ExtResource("3_54u17")
+
+[node name="Marker2D" type="Marker2D" parent="Hand/HandSprite2D" unique_id=1995012472]

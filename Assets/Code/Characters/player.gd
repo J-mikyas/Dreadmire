@@ -1,3 +1,4 @@
+class_name Player
 extends CharacterBody2D
 
 var direction: Vector2 = Vector2.ZERO
@@ -28,3 +29,7 @@ func _physics_process(delta: float) -> void:
 	velocity = velocity.move_toward(target_pos, FRICTION * delta)
 	
 	move_and_slide()
+
+#TODO: add player inv system here
+func _ready() -> void:
+	pass

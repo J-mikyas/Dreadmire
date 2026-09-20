@@ -1,19 +1,17 @@
 [gd_scene format=3 uid="uid://bhnm75osudm6y"]
 
 [ext_resource type="Texture2D" uid="uid://bo1to1nijuikq" path="res://Assets/Sprites/Tmp/DebugTexture.png" id="1_mtx47"]
-[ext_resource type="PackedScene" uid="uid://dmslwauil54sw" path="res://Assets/Scenes/Characters/player.tscn" id="2_fwket"]
+[ext_resource type="PackedScene" uid="uid://dmslwauil54sw" path="res://Assets/Scenes/Characters/Player.tscn" id="2_fwket"]
 [ext_resource type="Texture2D" uid="uid://cg782lsxwyhlm" path="res://Assets/Sprites/Tmp/ball.png" id="3_s6kse"]
 [ext_resource type="Texture2D" uid="uid://kw4w5pb32euc" path="res://Assets/Sprites/Tmp/box.png" id="4_1kmd0"]
 [ext_resource type="Texture2D" uid="uid://b60imrh87c5h4" path="res://Assets/Sprites/Tmp/prism.png" id="5_1kmd0"]
+[ext_resource type="PackedScene" uid="uid://byb4y2fiq5kck" path="res://Assets/Scenes/Tmp/test_item.tscn" id="6_kbki0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1kmd0"]
 radius = 10.164812
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r7bme"]
 size = Vector2(5.3322363, 2.9189787)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3564x"]
-size = Vector2(17.48624, 38.932037)
 
 [node name="Debug" type="Node2D" unique_id=1027687373]
 
@@ -24,6 +22,9 @@ texture = ExtResource("1_mtx47")
 
 [node name="Level" type="Node2D" parent="." unique_id=1475033954]
 y_sort_enabled = true
+
+[node name="Test_Item" parent="Level" unique_id=1955668158 instance=ExtResource("6_kbki0")]
+position = Vector2(817, 239)
 
 [node name="Player" parent="Level" unique_id=1130819150 instance=ExtResource("2_fwket")]
 position = Vector2(566, 335)
@@ -65,7 +66,5 @@ position = Vector2(-2, 21.765)
 scale = Vector2(7.984882, 7.984882)
 texture = ExtResource("5_1kmd0")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Prism" unique_id=2059581035]
-position = Vector2(1, 33.325012)
-scale = Vector2(5.476715, 0.9677862)
-shape = SubResource("RectangleShape2D_3564x")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Level/Prism" unique_id=900730017]
+polygon = PackedVector2Array(-51, 46.325012, -38, 16.325012, 39, 16.325012, 58, 46.325012, 58, 46.325012)
