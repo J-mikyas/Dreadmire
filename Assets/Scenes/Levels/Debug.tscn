@@ -24,7 +24,7 @@ texture = ExtResource("1_mtx47")
 y_sort_enabled = true
 
 [node name="Test_Item" parent="Level" unique_id=1955668158 instance=ExtResource("6_kbki0")]
-position = Vector2(817, 239)
+position = Vector2(820, 242)
 
 [node name="Player" parent="Level" unique_id=1130819150 instance=ExtResource("2_fwket")]
 position = Vector2(566, 335)

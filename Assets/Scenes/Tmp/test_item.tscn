@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dqtqrbh5r3dsa" path="res://Assets/Sprites/Tmp/test_item.png" id="2_wd636"]
 
 [node name="Test_Item" unique_id=1955668158 instance=ExtResource("1_nicve")]
+Item_Name = "test_item"
 
 [node name="Sprite2D" parent="." index="1" unique_id=1374943324]
 scale = Vector2(4.4873166, 4.4873166)

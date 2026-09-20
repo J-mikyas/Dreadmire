@@ -1,16 +1,15 @@
 class_name Item
 extends Area2D
 
-var Item_Name : String
+@export var Item_Name : String
 @onready var label: Label = $Label
 var can_PickUp: bool = false 
 var Current_Body: Player
 
 
 func PickUp(player:Player):
-	#TODO: add item to player inv here
-	
-	print("You picked up an item.")
+	player.append_item(Item_Name)
+	print("You picked up item " + Item_Name + ".")
 	queue_free()
 
 

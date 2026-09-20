@@ -30,6 +30,13 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 
-#TODO: add player inv system here
-func _ready() -> void:
-	pass
+# \\ Invintory System //
+
+var invintory: Array
+
+func append_item(Item_Name:String) -> void:
+	invintory.append(Item_Name)
+	print(invintory)
+
+func remove_item(Item_Name:String) -> void:
+	invintory.erase(Item_Name)

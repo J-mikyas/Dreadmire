@@ -6,7 +6,7 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3yigi"]
 radius = 15.999996
-height = 51.998592
+height = 46.001385
 
 [node name="Player" type="CharacterBody2D" unique_id=1130819150]
 script = ExtResource("1_7elgb")
