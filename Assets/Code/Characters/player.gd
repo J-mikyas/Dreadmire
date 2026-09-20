@@ -32,11 +32,26 @@ func _physics_process(delta: float) -> void:
 
 # \\ Invintory System //
 
-var invintory: Array
+var invintory = {
+	"quick": [],
+	"backpack": []
+}
+
+const QUICK_INV_SIZE: int = 4
+const BACKPACK_INV_SIZE: int = 10
 
 func append_item(Item_Name:String) -> void:
-	invintory.append(Item_Name)
-	print(invintory)
+	if invintory["quick"].size() < QUICK_INV_SIZE: 
+		
+		invintory["quick"].append(Item_Name)
+		print(invintory)
+	elif invintory["backpack"].size() < BACKPACK_INV_SIZE:
+		
+		invintory["backpack"].append(Item_Name)
+		print(invintory) 
+	else:
+		print("Inv is full")
 
 func remove_item(Item_Name:String) -> void:
-	invintory.erase(Item_Name)
+	
+	invintory["quick"].erase(Item_Name)

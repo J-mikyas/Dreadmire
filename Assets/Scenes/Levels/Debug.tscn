@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://bhnm75osudm6y"]
 
+[ext_resource type="Script" uid="uid://d0mvahf4ch6ie" path="res://Assets/Code/Scenes/debug.gd" id="1_5kxus"]
 [ext_resource type="Texture2D" uid="uid://bo1to1nijuikq" path="res://Assets/Sprites/Tmp/DebugTexture.png" id="1_mtx47"]
 [ext_resource type="PackedScene" uid="uid://dmslwauil54sw" path="res://Assets/Scenes/Characters/Player.tscn" id="2_fwket"]
 [ext_resource type="Texture2D" uid="uid://cg782lsxwyhlm" path="res://Assets/Sprites/Tmp/ball.png" id="3_s6kse"]
@@ -14,6 +15,7 @@ radius = 10.164812
 size = Vector2(5.3322363, 2.9189787)
 
 [node name="Debug" type="Node2D" unique_id=1027687373]
+script = ExtResource("1_5kxus")
 
 [node name="DebugTexture" type="Sprite2D" parent="." unique_id=1400588343]
 position = Vector2(575.5, 323.5)
@@ -22,6 +24,9 @@ texture = ExtResource("1_mtx47")
 
 [node name="Level" type="Node2D" parent="." unique_id=1475033954]
 y_sort_enabled = true
+
+[node name="Test_Item" parent="Level" unique_id=1460217618 instance=ExtResource("6_kbki0")]
+position = Vector2(976, 231)
 
 [node name="Player" parent="Level" unique_id=1130819150 instance=ExtResource("2_fwket")]
 position = Vector2(566, 335)
@@ -65,6 +70,3 @@ texture = ExtResource("5_1kmd0")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Level/Prism" unique_id=900730017]
 polygon = PackedVector2Array(-51, 46.325012, -38, 16.325012, 39, 16.325012, 58, 46.325012, 58, 46.325012)
-
-[node name="Test_Item" parent="." unique_id=1460217618 instance=ExtResource("6_kbki0")]
-position = Vector2(976, 231)
