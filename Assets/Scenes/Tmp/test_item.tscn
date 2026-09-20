@@ -1,11 +1,13 @@
 [gd_scene format=3 uid="uid://byb4y2fiq5kck"]
 
-[ext_resource type="PackedScene" uid="uid://c1d56f5ow5ltc" path="res://Assets/Scenes/Objects/Classes/Item.tscn" id="1_nicve"]
+[ext_resource type="Script" uid="uid://bi71ia8tflbuk" path="res://Assets/Code/Tmp/test_item.gd" id="1_nicve"]
+[ext_resource type="PackedScene" uid="uid://b7plv3gj4r1so" path="res://Assets/Scenes/Objects/Classes/WorldItem.tscn" id="1_wd636"]
 [ext_resource type="Texture2D" uid="uid://dqtqrbh5r3dsa" path="res://Assets/Sprites/Tmp/test_item.png" id="2_wd636"]
 
-[node name="Test_Item" unique_id=1955668158 instance=ExtResource("1_nicve")]
-Item_Name = "test_item"
+[node name="Test_Item" unique_id=1460217618 instance=ExtResource("1_wd636")]
+script = ExtResource("1_nicve")
+Item_Name = "Test_Item"
 
-[node name="Sprite2D" parent="." index="1" unique_id=1374943324]
-scale = Vector2(4.4873166, 4.4873166)
+[node name="Sprite2D" parent="." index="1" unique_id=799154367]
+scale = Vector2(6.1218815, 6.1218815)
 texture = ExtResource("2_wd636")

@@ -23,9 +23,6 @@ texture = ExtResource("1_mtx47")
 [node name="Level" type="Node2D" parent="." unique_id=1475033954]
 y_sort_enabled = true
 
-[node name="Test_Item" parent="Level" unique_id=1955668158 instance=ExtResource("6_kbki0")]
-position = Vector2(820, 242)
-
 [node name="Player" parent="Level" unique_id=1130819150 instance=ExtResource("2_fwket")]
 position = Vector2(566, 335)
 
@@ -68,3 +65,6 @@ texture = ExtResource("5_1kmd0")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Level/Prism" unique_id=900730017]
 polygon = PackedVector2Array(-51, 46.325012, -38, 16.325012, 39, 16.325012, 58, 46.325012, 58, 46.325012)
+
+[node name="Test_Item" parent="." unique_id=1460217618 instance=ExtResource("6_kbki0")]
+position = Vector2(976, 231)

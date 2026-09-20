@@ -1,0 +1,2 @@
+class_name Inventory_Item
+extends Item

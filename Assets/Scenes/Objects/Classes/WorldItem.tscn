@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://b7plv3gj4r1so"]
+
+[ext_resource type="Script" uid="uid://dxnmxk68oeppa" path="res://Assets/Code/Objects/Items/Classes/world_item.gd" id="1_jv65r"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nq0au"]
+radius = 97.0
+
+[node name="WorldItem" type="Area2D" unique_id=1460217618]
+script = ExtResource("1_jv65r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1506731865]
+shape = SubResource("CircleShape2D_nq0au")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=799154367]
+y_sort_enabled = true
+
+[node name="Label" type="Label" parent="." unique_id=499975254]
+offset_left = -22.0
+offset_top = -75.0
+offset_right = 22.0
+offset_bottom = -25.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 11
+theme_override_font_sizes/font_size = 36
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

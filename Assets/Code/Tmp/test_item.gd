@@ -1,1 +1,1 @@
-extends Item
+extends World_Item

@@ -2,27 +2,6 @@
 
 [ext_resource type="Script" uid="uid://bwi2pl0p787xf" path="res://Assets/Code/Objects/Items/Classes/item.gd" id="1_7ngke"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_r7bme"]
-radius = 97.0
-
-[node name="Item" type="Area2D" unique_id=2095330824]
+[node name="Item" type="Node2D" unique_id=1230717844]
 y_sort_enabled = true
 script = ExtResource("1_7ngke")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=127267084]
-shape = SubResource("CircleShape2D_r7bme")
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1374943324]
-y_sort_enabled = true
-
-[node name="Label" type="Label" parent="." unique_id=745055228]
-offset_left = -22.0
-offset_top = -75.0
-offset_right = 22.0
-offset_bottom = -25.0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 11
-theme_override_font_sizes/font_size = 36
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="body_exited" from="." to="." method="_on_body_exited"]
