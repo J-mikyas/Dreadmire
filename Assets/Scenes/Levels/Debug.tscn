@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://kw4w5pb32euc" path="res://Assets/Sprites/Tmp/box.png" id="4_1kmd0"]
 [ext_resource type="Texture2D" uid="uid://b60imrh87c5h4" path="res://Assets/Sprites/Tmp/prism.png" id="5_1kmd0"]
 [ext_resource type="PackedScene" uid="uid://byb4y2fiq5kck" path="res://Assets/Scenes/Tmp/test_item.tscn" id="6_kbki0"]
+[ext_resource type="PackedScene" uid="uid://ci5r6cnicn061" path="res://Assets/UI/Scenes/HUD.tscn" id="8_tw238"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1kmd0"]
 radius = 10.164812
@@ -27,6 +28,7 @@ y_sort_enabled = true
 
 [node name="Test_Item" parent="Level" unique_id=1460217618 instance=ExtResource("6_kbki0")]
 position = Vector2(976, 231)
+ammount = 0
 
 [node name="Player" parent="Level" unique_id=1130819150 instance=ExtResource("2_fwket")]
 position = Vector2(566, 335)
@@ -70,3 +72,5 @@ texture = ExtResource("5_1kmd0")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Level/Prism" unique_id=900730017]
 polygon = PackedVector2Array(-51, 46.325012, -38, 16.325012, 39, 16.325012, 58, 46.325012, 58, 46.325012)
+
+[node name="HUD" parent="." unique_id=1025199140 instance=ExtResource("8_tw238")]

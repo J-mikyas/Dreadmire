@@ -10,7 +10,7 @@ const FRICTION = 3000
 
 func _physics_process(delta: float) -> void:
 	
-	# \\ GUN AND HAND SYSTEM //
+	# \\ HAND SYSTEM //
 	
 	var mouse_pos = get_global_mouse_position() - global_position
 	var mouse_angle = rad_to_deg(mouse_pos.angle())
@@ -29,29 +29,3 @@ func _physics_process(delta: float) -> void:
 	velocity = velocity.move_toward(target_pos, FRICTION * delta)
 	
 	move_and_slide()
-
-# \\ Invintory System //
-
-var invintory = {
-	"quick": [],
-	"backpack": []
-}
-
-const QUICK_INV_SIZE: int = 4
-const BACKPACK_INV_SIZE: int = 10
-
-func append_item(Item_Name:String) -> void:
-	if invintory["quick"].size() < QUICK_INV_SIZE: 
-		
-		invintory["quick"].append(Item_Name)
-		print(invintory)
-	elif invintory["backpack"].size() < BACKPACK_INV_SIZE:
-		
-		invintory["backpack"].append(Item_Name)
-		print(invintory) 
-	else:
-		print("Inv is full")
-
-func remove_item(Item_Name:String) -> void:
-	
-	invintory["quick"].erase(Item_Name)

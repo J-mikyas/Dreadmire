@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://ci5r6cnicn061"]
+
+[ext_resource type="Script" uid="uid://cuahb73f2tix0" path="res://Assets/UI/Code/inv_ui.gd" id="1_minq3"]
+
+[node name="HUD" type="CanvasLayer" unique_id=1025199140]
+
+[node name="Inv" type="Control" parent="." unique_id=1723384656]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_minq3")
+
+[node name="QuickInv" type="HBoxContainer" parent="Inv" unique_id=1998956223]
+custom_maximum_size = Vector2(600, 80)
+layout_mode = 0
+offset_left = 269.0
+offset_top = 542.0
+offset_right = 869.0
+offset_bottom = 622.0
+pivot_offset = Vector2(300, 40)
+alignment = 1

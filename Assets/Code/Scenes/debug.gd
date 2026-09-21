@@ -11,6 +11,7 @@ func spawn_loop() -> void:
 		await get_tree().create_timer(2.0).timeout
 		
 		var item_instance = test_item_tscn.instantiate()
+		item_instance.amount = 1
 		
 		item_instance.position = Vector2(976.0,231.0)
 		level.add_child(item_instance)
