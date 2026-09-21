@@ -4,7 +4,7 @@ const test_item_tscn = preload("res://Assets/Scenes/Tmp/test_item.tscn")
 
 func _ready() -> void:
 	pass
-	#spawn_loop()
+	spawn_loop()
 
 func spawn_loop() -> void:
 	while true:

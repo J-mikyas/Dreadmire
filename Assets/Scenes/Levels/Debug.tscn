@@ -28,7 +28,6 @@ y_sort_enabled = true
 
 [node name="Test_Item" parent="Level" unique_id=1460217618 instance=ExtResource("6_kbki0")]
 position = Vector2(976, 231)
-ammount = 0
 
 [node name="Player" parent="Level" unique_id=1130819150 instance=ExtResource("2_fwket")]
 position = Vector2(566, 335)

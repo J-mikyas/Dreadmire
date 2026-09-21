@@ -2,11 +2,19 @@
 
 [ext_resource type="Script" uid="uid://dxnmxk68oeppa" path="res://Assets/Code/Objects/Items/Classes/world_item.gd" id="1_jv65r"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_r7bme"]
+radius = 147.01361
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_nq0au"]
 radius = 97.0
 
 [node name="WorldItem" type="Area2D" unique_id=1460217618]
 script = ExtResource("1_jv65r")
+
+[node name="MergeRadius" type="Area2D" parent="." unique_id=1268233065]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MergeRadius" unique_id=1044328971]
+shape = SubResource("CircleShape2D_r7bme")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1506731865]
 shape = SubResource("CircleShape2D_nq0au")
@@ -14,7 +22,7 @@ shape = SubResource("CircleShape2D_nq0au")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=799154367]
 y_sort_enabled = true
 
-[node name="Label" type="Label" parent="." unique_id=499975254]
+[node name="Interact_Key" type="Label" parent="." unique_id=499975254]
 offset_left = -22.0
 offset_top = -75.0
 offset_right = 22.0
@@ -23,5 +31,13 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 11
 theme_override_font_sizes/font_size = 36
 
+[node name="Amount" type="Label" parent="." unique_id=1935895393]
+offset_left = 16.0
+offset_top = 23.0
+offset_right = 56.0
+offset_bottom = 46.0
+horizontal_alignment = 1
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="area_entered" from="MergeRadius" to="." method="_on_merge_radius_area_entered"]

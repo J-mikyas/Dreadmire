@@ -1,8 +1,8 @@
 class_name World_Item
 extends Item
 
-
-@onready var label: Label = $Label
+@onready var interact_key: Label = $Interact_Key
+@onready var amount_text: Label = $Amount
 @export var amount:int = 1
 
 var can_PickUp: bool = false 
@@ -14,15 +14,38 @@ func PickUp():
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
-		label.text = "[E]"
-		label.show()
+		interact_key.text = "[E]"
+		interact_key.show()
 		can_PickUp = true
 
 func _on_body_exited(body: Node2D) -> void:
 	if body is Player:
-		label.hide()
+		interact_key.hide()
 		can_PickUp = false
 	
 func _physics_process(_delta: float) -> void:
 	if Input.is_key_pressed(KEY_E) and can_PickUp:
 		PickUp()
+
+
+# \\ Merge Logic //
+
+func update_amount() -> void:
+	if amount > 1:
+		amount_text.show()
+		amount_text.text = str(amount) + "x"
+	else:
+		amount_text.hide()
+
+func merge(other_item: World_Item) -> void:
+	
+	amount += other_item.amount
+	other_item.queue_free()
+	update_amount()
+
+func _on_merge_radius_area_entered(area: Area2D) -> void:
+	var other_item = area.get_parent()
+
+	if (other_item is World_Item) and (Item_Name == other_item.Item_Name):
+		if get_instance_id() > other_item.get_instance_id():
+			merge(other_item)
