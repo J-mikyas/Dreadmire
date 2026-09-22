@@ -27,8 +27,15 @@ func _physics_process(delta: float) -> void:
 	
 	if not (mouse_angle <= 90 and mouse_angle >= -90):
 		hand_sprite_2d.flip_v = true
+		
+		for item:Inventory_Item in equiped_item.get_children():
+			item.flip_v(true)
 	else:
 		hand_sprite_2d.flip_v = false
+		
+		for item:Inventory_Item in equiped_item.get_children():
+			item.flip_v(false)
+	
 	
 	# \\ MOVEMENT SYSTEM //
 	
