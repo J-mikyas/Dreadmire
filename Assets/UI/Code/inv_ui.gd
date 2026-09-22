@@ -20,7 +20,7 @@ func add_box():
 	# populate
 	for item:Dictionary in Inventory.inventory["quick"]:
 		
-		var box = InvBox.instantiate()
+		var box:InvBoxUI = InvBox.instantiate()
 		
 		var item_name = item.keys()[0]
 		var amount = item.values()[0]
@@ -31,3 +31,6 @@ func add_box():
 		box.Img = img
 		
 		quick_inv.add_child(box)
+		box._pressed.connect(func():
+			Inventory.toggle_item(item_name)
+			)

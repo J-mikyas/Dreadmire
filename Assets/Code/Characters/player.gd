@@ -7,6 +7,14 @@ const FRICTION = 3000
 
 @onready var hand: Node2D = $Hand
 @onready var hand_sprite_2d: Sprite2D = $Hand/HandSprite2D
+@onready var equiped_item: Marker2D = $Hand/EquipedItem
+
+# \\ ON READY //
+
+func _ready() -> void:
+	Inventory.equip.connect(equip_item)
+	Inventory.unequip.connect(unequip_item)
+
 
 func _physics_process(delta: float) -> void:
 	
@@ -29,3 +37,16 @@ func _physics_process(delta: float) -> void:
 	velocity = velocity.move_toward(target_pos, FRICTION * delta)
 	
 	move_and_slide()
+
+# \\ INVENTORY //
+
+func equip_item(item:Item):
+	
+	unequip_item()
+	equiped_item.add_child(item)
+	item.global_scale = Vector2.ONE
+	item.global_position = equiped_item.global_position
+
+func unequip_item():
+	for item in equiped_item.get_children():
+		item.queue_free()

@@ -36,3 +36,5 @@ horizontal_alignment = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=81859720]
 position = Vector2(40, 40)
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

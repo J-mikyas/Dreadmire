@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://cqkyphba5hl3p"]
+
+[ext_resource type="PackedScene" uid="uid://bkja5xg3lgxi3" path="res://Assets/Scenes/Objects/Classes/InventoryItem.tscn" id="1_q5ern"]
+[ext_resource type="Script" uid="uid://ci0d30qb14ort" path="res://Assets/Code/Tmp/test_inv_item.gd" id="2_8finb"]
+[ext_resource type="Texture2D" uid="uid://dqtqrbh5r3dsa" path="res://Assets/Sprites/Tmp/test_item.png" id="2_v1byt"]
+
+[node name="Test_InvItem" unique_id=2089391129 instance=ExtResource("1_q5ern")]
+script = ExtResource("2_8finb")
+
+[node name="ItemSprite2D" parent="." index="0" unique_id=1436035651]
+scale = Vector2(4.722, 4.722)
+texture = ExtResource("2_v1byt")

@@ -4,3 +4,5 @@
 
 [node name="InventoryItem" type="Node2D" unique_id=2089391129]
 script = ExtResource("1_7v4xf")
+
+[node name="ItemSprite2D" type="Sprite2D" parent="." unique_id=1436035651]
