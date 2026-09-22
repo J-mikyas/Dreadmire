@@ -22,11 +22,12 @@ func _on_body_exited(body: Node2D) -> void:
 	if body is Player:
 		interact_key.hide()
 		can_PickUp = false
-	
-func _physics_process(_delta: float) -> void:
-	if Input.is_key_pressed(KEY_E) and can_PickUp:
-		PickUp()
+		
 
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed:
+		if event.keycode == KEY_E and can_PickUp:
+			PickUp()
 
 # \\ Merge Logic //
 

@@ -11,6 +11,13 @@ offset_bottom = 40.0
 pivot_offset = Vector2(40, 40)
 script = ExtResource("1_ixo4j")
 
+[node name="Hotkey" type="Label" parent="." unique_id=390787879]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 2.0
+offset_right = 46.0
+offset_bottom = 25.0
+
 [node name="Name" type="Label" parent="." unique_id=741215880]
 layout_mode = 0
 offset_left = 5.0
