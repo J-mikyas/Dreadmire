@@ -45,20 +45,27 @@ func remove_item(item_name:String,Amount:int) -> void:
 				list.erase(item)
 
 
-# \\ ICONS //
+# \\ INVENTORY ITEMS //
 
-var icons:Dictionary = {
-	"Test_Item" = preload("res://Assets/Sprites/Tmp/test_item.png")
+var item_info:Dictionary = {
+	"Test_Item" = {
+		"inv" = preload("res://Assets/Scenes/Tmp/test_inv_item.tscn"),
+		"world" = preload("res://Assets/Scenes/Tmp/test_item.tscn"),
+		"icon" = preload("res://Assets/Sprites/Tmp/test_item.png")
+		}
 }
 
 func get_icon(item_name:String) -> Texture2D:
-	return icons.get(item_name)
+	var info_dict:Dictionary = item_info.get(item_name)
+	return info_dict.get("icon")
 
-# \\ INVENTORY ITEMS //
+func get_world_item(item_name:String):
+	var info_dict:Dictionary = item_info.get(item_name)
+	return info_dict.get("world")
 
-var inv_items:Dictionary = {
-	"Test_Item" = preload("res://Assets/Scenes/Tmp/test_inv_item.tscn")
-}
+func get_inv_item(item_name:String):
+	var info_dict:Dictionary = item_info.get(item_name)
+	return info_dict.get("inv")
 
 signal equip
 signal unequip
@@ -66,7 +73,7 @@ var equiped_item
 
 func toggle_item(item_name: String):
 	
-	var inv_item = inv_items.get(item_name).instantiate()
+	var inv_item = get_inv_item(item_name).instantiate()
 	
 	if equiped_item and equiped_item.Item_Name == inv_item.Item_Name:
 		unequip.emit()
