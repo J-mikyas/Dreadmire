@@ -37,12 +37,27 @@ func append_item(Append_Dict:Dictionary):
 		print("Inv is full")
 
 func remove_item(item_name:String,Amount:int) -> void:
-	for list:Array in inventory:
-		for item:Dictionary in list:
+	
+	for slot_type in inventory:
+		
+		var list:Array = inventory[slot_type]
+		
+		
+		for i in list.size():
+			
+			
+			var item:Dictionary = list[i]
+			
 			if item.keys()[0] == item_name and (item.values()[0] - Amount) > 0:
-				item.values()[0] -= Amount
-			elif item.keys()[0] == item_name and (item.values()[0] - Amount) < 0:
-				list.erase(item)
+				
+				var key = item.keys()[0]
+				
+				item[key] -= Amount
+				changed.emit()
+			elif item.keys()[0] == item_name and (item.values()[0] - Amount) <= 0:
+				list.remove_at(i)
+				changed.emit()
+				
 
 
 # \\ INVENTORY ITEMS //
@@ -69,17 +84,20 @@ func get_inv_item(item_name:String):
 
 signal equip
 signal unequip
-var equiped_item
+signal throw
+var equiped_item: Inventory_Item
 
 func toggle_item(item_name: String):
 	
-	var inv_item = get_inv_item(item_name).instantiate()
+	var inv_item:Inventory_Item = get_inv_item(item_name).instantiate()
 	
-	if equiped_item and equiped_item.Item_Name == inv_item.Item_Name:
+	if equiped_item and equiped_item.item_name == inv_item.item_name:
 		unequip.emit()
 		equiped_item = null
 	else:
 		equip.emit(inv_item)
 		equiped_item = inv_item
+
+func throw_item(item_name:String) -> void:
 	
-	
+	throw.emit(get_world_item(item_name))

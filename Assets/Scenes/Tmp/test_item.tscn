@@ -7,7 +7,7 @@
 
 [node name="Test_Item" unique_id=1460217618 instance=ExtResource("1_wd636")]
 script = ExtResource("1_nicve")
-Item_Name = "Test_Item"
+item_name = "Test_Item"
 
 [node name="Sprite2D" parent="Shadow" parent_id_path=PackedInt32Array(967170786) index="0" unique_id=960242765]
 modulate = Color(1, 1, 1, 0.23921569)

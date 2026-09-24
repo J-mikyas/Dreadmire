@@ -14,6 +14,7 @@ const FRICTION = 3000
 func _ready() -> void:
 	Inventory.equip.connect(equip_item)
 	Inventory.unequip.connect(unequip_item)
+	Inventory.throw.connect(throw)
 
 
 func _physics_process(delta: float) -> void:
@@ -57,3 +58,16 @@ func equip_item(item:Item):
 func unequip_item():
 	for item in equiped_item.get_children():
 		item.queue_free()
+		Inventory.equiped_item = null
+
+func throw(world_item_scene:PackedScene) -> void:
+	# \\ Spawn world Item //
+	
+	var world_item:World_Item = world_item_scene.instantiate()
+	var amount = Inventory.equiped_item.amount
+	world_item.amount = amount
+	world_item.position = equiped_item.global_position
+	self.get_parent().add_child(world_item)
+	
+	Inventory.unequip.emit()
+	Inventory.remove_item(world_item.item_name, amount)

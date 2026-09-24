@@ -1,4 +1,5 @@
 class_name Item
 extends Node2D
 
-@export var Item_Name : String
+@export var item_name : String
+@export var amount:int = 1

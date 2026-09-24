@@ -6,6 +6,7 @@
 
 [node name="Test_InvItem" unique_id=2089391129 instance=ExtResource("1_q5ern")]
 script = ExtResource("2_8finb")
+item_name = "Test_Item"
 
 [node name="ItemSprite2D" parent="." index="0" unique_id=1436035651]
 scale = Vector2(4.722, 4.722)
