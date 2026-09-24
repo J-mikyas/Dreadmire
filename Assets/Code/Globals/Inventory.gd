@@ -56,9 +56,15 @@ func remove_item(item_name:String,Amount:int) -> void:
 				changed.emit()
 			elif item.keys()[0] == item_name and (item.values()[0] - Amount) <= 0:
 				list.remove_at(i)
+				unequip.emit()
 				changed.emit()
-				
 
+func get_amount(item_name:String):
+	var amount:int
+	
+	for item:Dictionary in inventory["quick"]:
+		if item.keys()[0] == item_name:
+			return item.values()[0]
 
 # \\ INVENTORY ITEMS //
 
@@ -98,6 +104,6 @@ func toggle_item(item_name: String):
 		equip.emit(inv_item)
 		equiped_item = inv_item
 
-func throw_item(item_name:String) -> void:
+func throw_item(item_name:String,amount) -> void:
 	
-	throw.emit(get_world_item(item_name))
+	throw.emit(get_world_item(item_name),amount)

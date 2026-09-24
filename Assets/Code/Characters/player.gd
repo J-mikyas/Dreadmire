@@ -2,12 +2,15 @@ class_name Player
 extends CharacterBody2D
 
 var direction: Vector2 = Vector2.ZERO
+
 const SPEED = 600
 const FRICTION = 3000
 
 @onready var hand: Node2D = $Hand
 @onready var hand_sprite_2d: Sprite2D = $Hand/HandSprite2D
 @onready var equiped_item: Marker2D = $Hand/EquipedItem
+
+var can_throw:bool = true
 
 # \\ ON READY //
 
@@ -60,14 +63,12 @@ func unequip_item():
 		item.queue_free()
 		Inventory.equiped_item = null
 
-func throw(world_item_scene:PackedScene) -> void:
+func throw(world_item_scene:PackedScene, amount) -> void:
 	# \\ Spawn world Item //
-	
+
 	var world_item:World_Item = world_item_scene.instantiate()
-	var amount = Inventory.equiped_item.amount
 	world_item.amount = amount
 	world_item.position = equiped_item.global_position
 	self.get_parent().add_child(world_item)
 	
-	Inventory.unequip.emit()
 	Inventory.remove_item(world_item.item_name, amount)
