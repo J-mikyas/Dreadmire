@@ -60,7 +60,6 @@ func remove_item(item_name:String,Amount:int) -> void:
 				changed.emit()
 
 func get_amount(item_name:String):
-	var amount:int
 	
 	for item:Dictionary in inventory["quick"]:
 		if item.keys()[0] == item_name:
@@ -105,5 +104,4 @@ func toggle_item(item_name: String):
 		equiped_item = inv_item
 
 func throw_item(item_name:String,amount) -> void:
-	
 	throw.emit(get_world_item(item_name),amount)

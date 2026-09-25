@@ -70,5 +70,6 @@ func throw(world_item_scene:PackedScene, amount) -> void:
 	world_item.amount = amount
 	world_item.position = equiped_item.global_position
 	self.get_parent().add_child(world_item)
+	world_item.play_throw_anim()
 	
 	Inventory.remove_item(world_item.item_name, amount)

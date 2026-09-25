@@ -24,7 +24,6 @@ func _on_proximity_prompt_radius_body_exited(body: Node2D) -> void:
 	if body is Player:
 		interact_key.hide()
 		can_PickUp = false
-		
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed:
@@ -34,7 +33,7 @@ func _input(event: InputEvent) -> void:
 # \\ Merge Logic //
 
 var is_merging:bool = false
-
+var can_merge:bool = true
 
 func update_amount() -> void:
 	if amount > 1:
@@ -89,6 +88,21 @@ func merge(other_item: World_Item) -> void:
 func _on_merge_radius_area_entered(area: Area2D) -> void:
 	var other_item = area.get_parent().get_parent()
 
-	if (other_item is World_Item) and not (is_merging or other_item.is_merging) and (self.item_name == other_item.item_name) and not other_item.is_queued_for_deletion():
+	if can_merge and (other_item is World_Item) and not (is_merging or other_item.is_merging) and (self.item_name == other_item.item_name) and not other_item.is_queued_for_deletion():
 		if get_instance_id() > other_item.get_instance_id():
 			merge(other_item)
+
+# \\ Throw Anim //
+
+@onready var anim_player: AnimationPlayer = $AnimationPlayer
+
+func play_throw_anim():
+	can_merge = false
+	anim_player.play("Throw")
+	await anim_player.animation_finished
+	can_merge = true
+	
+	if $Visible/MergeRadius.monitoring:
+		var overlapping_areas = $Visible/MergeRadius.get_overlapping_areas()
+		for area in overlapping_areas:
+			_on_merge_radius_area_entered(area)
