@@ -42,9 +42,7 @@ func remove_item(item_name:String,Amount:int) -> void:
 		
 		var list:Array = inventory[slot_type]
 		
-		
 		for i in list.size():
-			
 			
 			var item:Dictionary = list[i]
 			
@@ -54,10 +52,12 @@ func remove_item(item_name:String,Amount:int) -> void:
 				
 				item[key] -= Amount
 				changed.emit()
+				return
 			elif item.keys()[0] == item_name and (item.values()[0] - Amount) <= 0:
 				list.remove_at(i)
 				unequip.emit()
 				changed.emit()
+				return
 
 func get_amount(item_name:String):
 	
