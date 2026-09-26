@@ -3,12 +3,11 @@ extends Node2D
 const test_item_tscn = preload("res://Assets/Scenes/Tmp/test_item.tscn")
 
 func _ready() -> void:
-	pass
 	spawn_loop()
 
 func spawn_loop() -> void:
 	while true:
-		await get_tree().create_timer(2.0).timeout
+		await get_tree().create_timer(1.0).timeout
 		
 		var item_instance = test_item_tscn.instantiate()
 		item_instance.amount = 1

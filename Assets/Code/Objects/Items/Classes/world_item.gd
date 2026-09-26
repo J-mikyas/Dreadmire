@@ -9,6 +9,8 @@ var can_PickUp: bool = false
 
 func _ready() -> void:
 	update_amount()
+	check_overlap()
+
 
 func PickUp():
 	Inventory.append_item({item_name:amount})
@@ -27,7 +29,7 @@ func _on_proximity_prompt_radius_body_exited(body: Node2D) -> void:
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed:
-		if event.keycode == KEY_E and can_PickUp:
+		if event.keycode == KEY_E and can_PickUp and not is_merging:
 			PickUp()
 
 # \\ Merge Logic //
@@ -50,20 +52,38 @@ func play_merge_anim() -> void:
 	tween.tween_property(self, "scale", Vector2(1.2, 1.2), 0.15)
 	tween.tween_property(self, "scale", Vector2(1.0, 1.0), 0.1)
 
+func check_overlap():
+	
+	await get_tree().physics_frame
+	
+	if is_instance_valid(self):
+		var overlapping_areas = $Visible/MergeRadius.get_overlapping_areas()
+		for area in overlapping_areas:
+			_on_merge_radius_area_entered(area)
+			var other_item = area.get_parent().get_parent()
+			if is_instance_valid(other_item):
+				other_item._on_merge_radius_area_entered($Visible/MergeRadius)
+
+func set_monitor(merge_rad:Area2D, value:bool):
+	merge_rad.set_deferred("monitoring", value)
+	merge_rad.set_deferred("monitorable", value)
+
+
 func merge(other_item: World_Item) -> void:
 	
 	is_merging = true
 	other_item.is_merging = true
 	
-	$Visible/MergeRadius.set_deferred("monitoring", false)
-	$Visible/MergeRadius.set_deferred("monitorable", false)
-	other_item.get_node("Visible/MergeRadius").set_deferred("monitoring", false)
-	other_item.get_node("Visible/MergeRadius").set_deferred("monitorable", false)
+	var merge_rad:Area2D = $Visible/MergeRadius
+	var other_merge_rad:Area2D = other_item.get_node("Visible/MergeRadius")
+	
+	set_monitor(merge_rad,false)
+	set_monitor(other_merge_rad,false)
 	
 	var tween: Tween = create_tween()
 	tween.tween_property(other_item,"position",self.position,0.2)
 	tween.set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
-	await tween.finished
+	await get_tree().create_timer(0.2).timeout
 	
 	if is_instance_valid(other_item):
 		amount += other_item.amount
@@ -73,16 +93,11 @@ func merge(other_item: World_Item) -> void:
 	
 	is_merging = false
 	
-	$Visible/MergeRadius.monitoring = true
-	$Visible/MergeRadius.monitorable = true
-	other_item.get_node("Visible/MergeRadius").set_deferred("monitoring", true)
-	other_item.get_node("Visible/MergeRadius").set_deferred("monitorable", true)
+	set_monitor(merge_rad,true)
+	set_monitor(other_merge_rad,true)
 	
-	await get_tree().physics_frame
-		
-	var overlapping_areas = $Visible/MergeRadius.get_overlapping_areas()
-	for area in overlapping_areas:
-		_on_merge_radius_area_entered(area)
+	await get_tree().create_timer(0.2).timeout
+	check_overlap()
 
 
 func _on_merge_radius_area_entered(area: Area2D) -> void:
@@ -101,8 +116,4 @@ func play_throw_anim():
 	anim_player.play("Throw")
 	await anim_player.animation_finished
 	can_merge = true
-	
-	if $Visible/MergeRadius.monitoring:
-		var overlapping_areas = $Visible/MergeRadius.get_overlapping_areas()
-		for area in overlapping_areas:
-			_on_merge_radius_area_entered(area)
+	check_overlap()
