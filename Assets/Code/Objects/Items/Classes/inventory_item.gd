@@ -9,7 +9,7 @@ func flip_v(value:bool):
 func _input(event: InputEvent) -> void:
 	if (event is InputEventKey) and (event.keycode == KEY_R) and not(event.pressed):
 		if event.shift_pressed:
-			var amount = Inventory.get_amount(self.item_name)
-			Inventory.throw_item(self.item_name, amount)
+			var _amount = Inventory.get_amount(self.item_name)
+			Inventory.throw_item(self.item_name, _amount)
 		else:
 			Inventory.throw_item(self.item_name, 1)

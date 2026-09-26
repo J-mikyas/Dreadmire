@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://vv7ijkc6csal"]
 
-[ext_resource type="Texture2D" uid="uid://d05apyh03nv6n" path="res://Assets/UI/Sprites/Inventory/backpack.png" id="1_e854n"]
+[ext_resource type="Texture2D" uid="uid://d05apyh03nv6n" path="res://Assets/UI/Sprites/Inventory/backpack.png" id="1_esb22"]
 
 [node name="BackpackBox" type="Button" unique_id=457502447]
 custom_minimum_size = Vector2(80, 80)
@@ -13,4 +13,4 @@ pivot_offset = Vector2(40, 40)
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1385948318]
 position = Vector2(40, 40)
 scale = Vector2(3.1431189, 3.1431189)
-texture = ExtResource("1_e854n")
+texture = ExtResource("1_esb22")

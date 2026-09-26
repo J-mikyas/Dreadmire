@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b506d75oi680"]
 
-[ext_resource type="Script" uid="uid://bhkkskusxsu58" path="res://Assets/UI/Code/inv_box.gd" id="1_ixo4j"]
+[ext_resource type="Script" uid="uid://bhkkskusxsu58" path="res://Assets/UI/Code/inv_box.gd" id="1_s0u32"]
 
 [node name="InvBox" type="Button" unique_id=52292498]
 custom_minimum_size = Vector2(80, 80)
@@ -9,7 +9,7 @@ offset_top = -40.0
 offset_right = 40.0
 offset_bottom = 40.0
 pivot_offset = Vector2(40, 40)
-script = ExtResource("1_ixo4j")
+script = ExtResource("1_s0u32")
 
 [node name="Hotkey" type="Label" parent="." unique_id=390787879]
 layout_mode = 0
@@ -44,4 +44,6 @@ horizontal_alignment = 1
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=81859720]
 position = Vector2(40, 40)
 
+[connection signal="button_down" from="." to="." method="_on_button_down"]
+[connection signal="button_up" from="." to="." method="_on_button_up"]
 [connection signal="pressed" from="." to="." method="_on_pressed"]

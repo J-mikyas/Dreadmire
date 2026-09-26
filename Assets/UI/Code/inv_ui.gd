@@ -7,12 +7,38 @@ extends Control
 @onready var backpack_items: GridContainer = $BackpackInv/BackpackItems
 
 
-var InvBox = preload("res://Assets/UI/Scenes/InvBox.tscn")
-var BackpackBox = preload("res://Assets/UI/Scenes/BackpackBox.tscn")
+var InvBox = preload("res://Assets/UI/Scenes/Inventory/InvBox.tscn")
+var BackpackBox = preload("res://Assets/UI/Scenes/Inventory/BackpackBox.tscn")
 
 func _ready() -> void:
+	
+	#init
+	
 	Inventory.changed.connect(add_box)
 	add_box()
+	drag_and_drop()
+
+func drag_and_drop():
+	quick_inv.mouse_entered.connect(func():
+		if Inventory.dragging_item:
+			Inventory.destination_slot = "quick"
+		)
+	
+	backpack_inv.mouse_entered.connect(func():
+		
+		if Inventory.dragging_item:
+			Inventory.destination_slot = "backpack"
+		)
+	
+	quick_inv.mouse_exited.connect(func():
+		if Inventory.dragging_item:
+			Inventory.destination_slot = "none"
+		)
+	
+	backpack_inv.mouse_exited.connect(func():
+		if Inventory.dragging_item:
+			Inventory.destination_slot = "none"
+		)
 
 func add_backpack_box():
 	var backpack_box:Button = BackpackBox.instantiate()
@@ -51,6 +77,7 @@ func add_box():
 		box.Amount = amount
 		box.Img = img
 		box.hotkey = i + 1
+		box.source_slot = "quick"
 		
 		quick_inv.add_child(box)
 		box._pressed.connect(func():
@@ -73,5 +100,6 @@ func add_box():
 		box.Item_Name = item_name
 		box.Amount = amount
 		box.Img = img
+		box.source_slot = "backpack"
 		
 		backpack_items.add_child(box)

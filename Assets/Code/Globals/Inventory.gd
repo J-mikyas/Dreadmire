@@ -2,13 +2,18 @@ extends Node
 
 signal changed
 
+const QUICK_INV_SIZE: int = 5
+const BACKPACK_INV_SIZE: int = 10
+
 var inventory = {
 	"quick": [],
 	"backpack": []
 }
 
-const QUICK_INV_SIZE: int = 5
-const BACKPACK_INV_SIZE: int = 10
+var inventory_sizes = {
+	"quick": QUICK_INV_SIZE,
+	"backpack": BACKPACK_INV_SIZE
+}
 
 func append_item(Append_Dict:Dictionary):
 	
@@ -36,7 +41,21 @@ func append_item(Append_Dict:Dictionary):
 	else:
 		print("Inv is full")
 
-func remove_item(item_name:String,Amount:int) -> void:
+func append_item_slot(Append_Dict:Dictionary, slot:String):
+	
+	for item:Dictionary in inventory[slot]:
+		if Append_Dict.keys()[0] == item.keys()[0]:
+			item[item.keys()[0]] += Append_Dict.values()[0]
+			return
+	
+	if inventory[slot].size() < inventory_sizes[slot]:
+		inventory[slot].append(Append_Dict.duplicate())
+		return
+	else:
+		print("Inv is full")
+		return
+
+func remove_item(item_name:String,amount:int) -> void:
 	
 	for slot_type in inventory:
 		
@@ -46,18 +65,33 @@ func remove_item(item_name:String,Amount:int) -> void:
 			
 			var item:Dictionary = list[i]
 			
-			if item.keys()[0] == item_name and (item.values()[0] - Amount) > 0:
+			if item.keys()[0] == item_name and (item.values()[0] - amount) > 0:
 				
 				var key = item.keys()[0]
 				
-				item[key] -= Amount
+				item[key] -= amount
 				changed.emit()
 				return
-			elif item.keys()[0] == item_name and (item.values()[0] - Amount) <= 0:
+			elif item.keys()[0] == item_name and (item.values()[0] - amount) <= 0:
 				list.remove_at(i)
 				unequip.emit()
 				changed.emit()
 				return
+
+func remove_item_slot(item_name:String,amount:int, slot:String):
+	var list:Array = inventory[slot]
+
+	for i in list.size():
+		var item:Dictionary = list[i]
+
+		if item.keys()[0] == item_name:
+			if item.values()[0] - amount > 0:
+				item[item.keys()[0]] -= amount
+			else:
+				list.remove_at(i)
+
+			changed.emit()
+			return
 
 func get_amount(item_name:String):
 	
@@ -105,3 +139,17 @@ func toggle_item(item_name: String):
 
 func throw_item(item_name:String,amount) -> void:
 	throw.emit(get_world_item(item_name),amount)
+	
+# \\ DRAG AND DROP //
+
+var dragging_item:bool = false
+var destination_slot:String = "none"
+
+func drag_and_drop(item_name:String, item_amount:int, source_slot:String):
+	
+	if not destination_slot == "none":
+		
+		append_item_slot({item_name:item_amount},destination_slot)
+		remove_item_slot(item_name,item_amount,source_slot)
+	
+	changed.emit()

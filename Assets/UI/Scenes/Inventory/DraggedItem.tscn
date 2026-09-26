@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://hdlo4xi2t6si"]
+
+[node name="DraggedItem" type="Node2D" unique_id=165758409]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=389619200]
+position = Vector2(-15.999999, 17)
+scale = Vector2(2.5, 2.5)
