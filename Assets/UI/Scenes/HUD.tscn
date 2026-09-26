@@ -13,10 +13,33 @@ script = ExtResource("1_minq3")
 
 [node name="QuickInv" type="HBoxContainer" parent="Inv" unique_id=1998956223]
 custom_maximum_size = Vector2(600, 80)
-layout_mode = 0
-offset_left = 269.0
-offset_top = 542.0
-offset_right = 869.0
-offset_bottom = 622.0
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 16.306002
+anchor_right = 28.664001
+anchor_bottom = 16.306002
+offset_left = 270.0
+offset_top = -110.24005
+offset_right = -276.56006
+offset_bottom = -30.240051
 pivot_offset = Vector2(300, 40)
 alignment = 1
+
+[node name="BackpackInv" type="ScrollContainer" parent="Inv" unique_id=318138245]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 14.362
+anchor_top = 8.125
+anchor_right = 14.362
+anchor_bottom = 8.125
+offset_left = -260.48004
+offset_top = -154.0
+offset_right = 244.51996
+offset_bottom = 171.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackpackItems" type="GridContainer" parent="Inv/BackpackInv" unique_id=365366910]
+layout_mode = 2
+columns = 6
