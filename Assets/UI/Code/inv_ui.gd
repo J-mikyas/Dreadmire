@@ -19,27 +19,20 @@ func _ready() -> void:
 	add_box()
 	drag_and_drop()
 
+func set_destination_slot(slot_type:String):
+	
+	if Inventory.dragging_item:
+		Inventory.destination_slot = slot_type
+
+func check_entered(ui:Control, slot_type:String):
+	
+	ui.mouse_entered.connect(set_destination_slot.bind(slot_type))
+	ui.mouse_exited.connect(set_destination_slot.bind("none"))
+
 func drag_and_drop():
-	quick_inv.mouse_entered.connect(func():
-		if Inventory.dragging_item:
-			Inventory.destination_slot = "quick"
-		)
 	
-	backpack_inv.mouse_entered.connect(func():
-		
-		if Inventory.dragging_item:
-			Inventory.destination_slot = "backpack"
-		)
-	
-	quick_inv.mouse_exited.connect(func():
-		if Inventory.dragging_item:
-			Inventory.destination_slot = "none"
-		)
-	
-	backpack_inv.mouse_exited.connect(func():
-		if Inventory.dragging_item:
-			Inventory.destination_slot = "none"
-		)
+	check_entered(quick_inv,"quick")
+	check_entered(backpack_inv, "backpack") 
 
 func add_backpack_box():
 	var backpack_box:Button = BackpackBox.instantiate()

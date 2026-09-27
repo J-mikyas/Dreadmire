@@ -36,7 +36,7 @@ func _input(event: InputEvent) -> void:
 var drag_item = preload("res://Assets/UI/Scenes/Inventory/DraggedItem.tscn")
 var current_drag_item:DraggedItem
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Inventory.dragging_item and current_drag_item:
 		current_drag_item.global_position = get_global_mouse_position()
 
