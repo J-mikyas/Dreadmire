@@ -30,10 +30,31 @@ func _input(event: InputEvent) -> void:
 		if event.keycode == KEY_0 + hotkey:
 			_pressed.emit()
 
+
+#\\ DRAG ITEM SYSTEM //
+
+var drag_item = preload("res://Assets/UI/Scenes/Inventory/DraggedItem.tscn")
+var current_drag_item:DraggedItem
+
+func _process(delta: float) -> void:
+	if Inventory.dragging_item and current_drag_item:
+		current_drag_item.global_position = get_global_mouse_position()
+
 func _on_button_down() -> void:
 	
-	await get_tree().create_timer(0.15).timeout
+	await get_tree().create_timer(0.12).timeout
 	if self.button_pressed and Inventory.dragging_item == false:
+		
+		current_drag_item = drag_item.instantiate()
+		current_drag_item.img = self.Img
+		current_drag_item.global_position = get_global_mouse_position()
+		
+		if source_slot == "quick":
+			self.get_parent().get_parent().get_parent().add_child(current_drag_item)
+		else:
+			self.get_parent().get_parent().get_parent().get_parent().add_child(current_drag_item)
+		
+		
 		Inventory.dragging_item = true
 
 
@@ -42,3 +63,7 @@ func _on_button_up() -> void:
 	if Inventory.dragging_item:
 		Inventory.drag_and_drop(Item_Name,Amount,source_slot)
 		Inventory.dragging_item = false
+		
+		if current_drag_item:
+			current_drag_item.queue_free()
+			current_drag_item = null 

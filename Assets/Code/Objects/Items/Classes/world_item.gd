@@ -56,7 +56,7 @@ func check_overlap():
 	
 	await get_tree().physics_frame
 	
-	if is_instance_valid(self):
+	if is_instance_valid(self) and $Visible/MergeRadius.monitoring:
 		var overlapping_areas = $Visible/MergeRadius.get_overlapping_areas()
 		for area in overlapping_areas:
 			_on_merge_radius_area_entered(area)

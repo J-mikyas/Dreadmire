@@ -2,9 +2,10 @@ extends Control
 
 # \\ Inventory UI //
 
-@onready var quick_inv: HBoxContainer = $QuickInv
-@onready var backpack_inv: ScrollContainer = $BackpackInv
-@onready var backpack_items: GridContainer = $BackpackInv/BackpackItems
+@onready var quick_inv: HBoxContainer = $Quick/QuickInv
+@onready var backpack: Control = $Backpack
+@onready var backpack_inv: ScrollContainer = $Backpack/BackpackInv
+@onready var backpack_items: GridContainer = $Backpack/BackpackInv/BackpackItems
 
 
 var InvBox = preload("res://Assets/UI/Scenes/Inventory/InvBox.tscn")
@@ -44,10 +45,10 @@ func add_backpack_box():
 	var backpack_box:Button = BackpackBox.instantiate()
 	
 	backpack_box.pressed.connect(func():
-		if backpack_inv.visible:
-			backpack_inv.hide()
+		if backpack.visible:
+			backpack.hide()
 		else:
-			backpack_inv.show()
+			backpack.show()
 	)
 	
 	quick_inv.add_child(backpack_box)

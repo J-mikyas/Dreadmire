@@ -1,7 +1,10 @@
 [gd_scene format=3 uid="uid://hdlo4xi2t6si"]
 
+[ext_resource type="Script" uid="uid://duipyafvhqwye" path="res://Assets/UI/Code/dragged_item.gd" id="1_vllsa"]
+
 [node name="DraggedItem" type="Node2D" unique_id=165758409]
+script = ExtResource("1_vllsa")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=389619200]
-position = Vector2(-15.999999, 17)
-scale = Vector2(2.5, 2.5)
+position = Vector2(-9.536743e-07, 3.8146973e-06)
+scale = Vector2(4, 4)

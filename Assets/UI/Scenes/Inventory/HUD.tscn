@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://ci5r6cnicn061"]
 
 [ext_resource type="Script" uid="uid://cuahb73f2tix0" path="res://Assets/UI/Code/inv_ui.gd" id="1_minq3"]
+[ext_resource type="Texture2D" uid="uid://dnet270sondkw" path="res://Assets/UI/Sprites/Inventory/backpack_inv_box.png" id="2_84n3n"]
+[ext_resource type="FontFile" uid="uid://dfi170r0aedvr" path="res://Assets/UI/Fonts/8-BIT WONDER.TTF" id="3_84n3n"]
 
 [node name="HUD" type="CanvasLayer" unique_id=1025199140]
 
@@ -11,7 +13,54 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_minq3")
 
-[node name="QuickInv" type="HBoxContainer" parent="Inv" unique_id=1998956223]
+[node name="Backpack" type="Control" parent="Inv" unique_id=570891031]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Inv/Backpack" unique_id=1184921251]
+position = Vector2(565.00006, 328.00003)
+scale = Vector2(6.445, 7.195)
+texture = ExtResource("2_84n3n")
+
+[node name="Label" type="Label" parent="Inv/Backpack/Sprite2D" unique_id=411444656]
+offset_left = -21.101639
+offset_top = -30.993748
+offset_right = 530.8984
+offset_bottom = 64.006256
+scale = Vector2(0.075, 0.075)
+theme_override_fonts/font = ExtResource("3_84n3n")
+theme_override_font_sizes/font_size = 69
+text = "Backpack"
+
+[node name="BackpackInv" type="ScrollContainer" parent="Inv/Backpack" unique_id=318138245]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 14.362
+anchor_top = 8.125
+anchor_right = 14.362
+anchor_bottom = 8.125
+offset_left = -261.48004
+offset_top = -148.0
+offset_right = 243.51996
+offset_bottom = 177.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackpackItems" type="GridContainer" parent="Inv/Backpack/BackpackInv" unique_id=365366910]
+layout_mode = 2
+columns = 6
+
+[node name="Quick" type="Control" parent="Inv" unique_id=1205369483]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="QuickInv" type="HBoxContainer" parent="Inv/Quick" unique_id=1998956223]
 custom_maximum_size = Vector2(600, 80)
 layout_mode = 1
 anchors_preset = -1
@@ -24,22 +73,3 @@ offset_right = -276.56006
 offset_bottom = -30.240051
 pivot_offset = Vector2(300, 40)
 alignment = 1
-
-[node name="BackpackInv" type="ScrollContainer" parent="Inv" unique_id=318138245]
-visible = false
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 14.362
-anchor_top = 8.125
-anchor_right = 14.362
-anchor_bottom = 8.125
-offset_left = -260.48004
-offset_top = -154.0
-offset_right = 244.51996
-offset_bottom = 171.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="BackpackItems" type="GridContainer" parent="Inv/BackpackInv" unique_id=365366910]
-layout_mode = 2
-columns = 6
