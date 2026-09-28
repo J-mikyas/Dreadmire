@@ -150,6 +150,7 @@ func drag_and_drop(item_name:String, item_amount:int, source_slot:String):
 	if not destination_slot == "none":
 		
 		append_item_slot({item_name:item_amount},destination_slot)
+		unequip.emit()
 		remove_item_slot(item_name,item_amount,source_slot)
 	
 	changed.emit()
