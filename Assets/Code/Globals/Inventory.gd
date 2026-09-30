@@ -152,5 +152,7 @@ func drag_and_drop(item_name:String, item_amount:int, source_slot:String):
 		append_item_slot({item_name:item_amount},destination_slot)
 		unequip.emit()
 		remove_item_slot(item_name,item_amount,source_slot)
+	else:
+		self.throw.emit(get_world_item(item_name),item_amount)
 	
 	changed.emit()
