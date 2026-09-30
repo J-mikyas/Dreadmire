@@ -78,12 +78,12 @@ func add_box():
 		box.source_slot = "quick"
 		
 		box.mouse_entered.connect(func():
-			Inventory.destination_slot = "quick"
+			set_destination_slot("quick")
 		)
 		
 		quick_inv.add_child(box)
 		box._pressed.connect(func():
-			set_destination_slot("quick")
+			Inventory.toggle_item(item_name)
 			)
 	
 	#add backpack button
