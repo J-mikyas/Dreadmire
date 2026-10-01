@@ -18,7 +18,7 @@ func PickUp():
 
 func _on_proximity_prompt_radius_body_entered(body: Node2D) -> void:
 	if body is Player:
-		interact_key.text = "[E]"
+		interact_key.text = "[" + OS.get_keycode_string(Settings.keybinds["PickUp"]) + "]"
 		interact_key.show()
 		can_PickUp = true
 
@@ -29,7 +29,7 @@ func _on_proximity_prompt_radius_body_exited(body: Node2D) -> void:
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed:
-		if event.keycode == KEY_E and can_PickUp and not is_merging:
+		if event.keycode == Settings.keybinds["PickUp"] and can_PickUp and not is_merging:
 			PickUp()
 
 # \\ Merge Logic //
