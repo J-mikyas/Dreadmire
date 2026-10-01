@@ -11,44 +11,40 @@ extends Control
 var InvBox = preload("res://Assets/UI/Scenes/Inventory/InvBox.tscn")
 var BackpackBox = preload("res://Assets/UI/Scenes/Inventory/BackpackBox.tscn")
 
+var backpack_button:Button
+
 func _ready() -> void:
-	
 	#init
-	
+	Inventory.slot_resolver = get_slot_at_mouse
 	Inventory.changed.connect(add_box)
 	add_box()
-	drag_and_drop()
 
-func set_destination_slot(slot_type:String):
+func get_slot_at_mouse() -> String:
+	var mouse_pos = get_global_mouse_position()
 	
-	if Inventory.dragging_item:
-		Inventory.destination_slot = slot_type
-
-func check_entered(ui:Control, slot_type:String):
+	if backpack.visible and backpack_inv.get_global_rect().has_point(mouse_pos):
+		return "backpack"
 	
-	ui.mouse_entered.connect(set_destination_slot.bind(slot_type))
-	ui.mouse_exited.connect(set_destination_slot.bind("none"))
-
-func drag_and_drop():
+	if backpack_button.get_global_rect().has_point(mouse_pos):
+		return "backpack"
 	
-	check_entered(quick_inv,"quick")
-	check_entered(backpack_inv, "backpack") 
+	if quick_inv.get_global_rect().has_point(mouse_pos):
+		return "quick"
+	
+	return "none"
 
 func add_backpack_box():
-	var backpack_box:Button = BackpackBox.instantiate()
+	var box:Button = BackpackBox.instantiate()
+	backpack_button = box
 	
-	backpack_box.pressed.connect(func():
+	box.pressed.connect(func():
 		if backpack.visible:
 			backpack.hide()
 		else:
 			backpack.show()
 	)
 	
-	backpack_box.mouse_entered.connect(func():
-		set_destination_slot("backpack")
-		)
-	
-	quick_inv.add_child(backpack_box)
+	quick_inv.add_child(box)
 
 func add_box():
 	
@@ -77,14 +73,11 @@ func add_box():
 		box.hotkey = i + 1
 		box.source_slot = "quick"
 		
-		box.mouse_entered.connect(func():
-			set_destination_slot("quick")
-		)
-		
 		quick_inv.add_child(box)
+		
 		box._pressed.connect(func():
 			Inventory.toggle_item(item_name)
-			)
+		)
 	
 	#add backpack button
 	
@@ -103,9 +96,5 @@ func add_box():
 		box.Amount = amount
 		box.Img = img
 		box.source_slot = "backpack"
-		
-		box.mouse_entered.connect(func():
-			set_destination_slot("backpack")
-		)
 		
 		backpack_items.add_child(box)

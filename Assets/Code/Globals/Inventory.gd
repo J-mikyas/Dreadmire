@@ -143,16 +143,19 @@ func throw_item(item_name:String,amount) -> void:
 # \\ DRAG AND DROP //
 
 var dragging_item:bool = false
-var destination_slot:String = "none"
+var slot_resolver: Callable   # set by inv_ui
+
 
 func drag_and_drop(item_name:String, item_amount:int, source_slot:String):
 	
-	if not destination_slot == "none":
-		
-		append_item_slot({item_name:item_amount},destination_slot)
+	var destination_slot := "none"
+	destination_slot = slot_resolver.call()
+
+	if destination_slot == "none":
+		throw.emit(get_world_item(item_name), item_amount)
+	elif destination_slot != source_slot:
+		append_item_slot({item_name: item_amount}, destination_slot)
 		unequip.emit()
-		remove_item_slot(item_name,item_amount,source_slot)
-	else:
-		self.throw.emit(get_world_item(item_name),item_amount)
-	
+		remove_item_slot(item_name, item_amount, source_slot)
+
 	changed.emit()
