@@ -54,7 +54,8 @@ func _on_button_down() -> void:
 		else:
 			self.get_parent().get_parent().get_parent().get_parent().add_child(current_drag_item)
 		
-		
+		modulate.a = 0.0
+		current_drag_item.play_pop_anim()
 		Inventory.dragging_item = true
 
 

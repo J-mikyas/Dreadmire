@@ -13,7 +13,7 @@ func _ready() -> void:
 
 
 func PickUp():
-	Inventory.append_item({item_name:amount})
+	Inventory.append_item({item_name:amount},self.stackable)
 	queue_free()
 
 func _on_proximity_prompt_radius_body_entered(body: Node2D) -> void:
@@ -103,7 +103,7 @@ func merge(other_item: World_Item) -> void:
 func _on_merge_radius_area_entered(area: Area2D) -> void:
 	var other_item = area.get_parent().get_parent()
 
-	if can_merge and (other_item is World_Item) and not (is_merging or other_item.is_merging) and (self.item_name == other_item.item_name) and not other_item.is_queued_for_deletion():
+	if self.stackable and can_merge and (other_item is World_Item) and not (is_merging or other_item.is_merging) and (self.item_name == other_item.item_name) and not other_item.is_queued_for_deletion():
 		if get_instance_id() > other_item.get_instance_id():
 			merge(other_item)
 

@@ -15,19 +15,19 @@ var inventory_sizes = {
 	"backpack": BACKPACK_INV_SIZE
 }
 
-func append_item(Append_Dict:Dictionary):
+func append_item(Append_Dict:Dictionary,stackable:bool):
 	
-	for slot_type in inventory:
+	if stackable:
+		for slot_type in inventory:
+			var list:Array = inventory[slot_type]
 		
-		var list:Array = inventory[slot_type]
-		
-		for i in list.size():
-			var item: Dictionary = list[i]
+			for i in list.size():
+				var item: Dictionary = list[i]
 
-			if item.keys()[0] == Append_Dict.keys()[0]:
-				list[i][item.keys()[0]] += Append_Dict.values()[0]
-				changed.emit()
-				return
+				if item.keys()[0] == Append_Dict.keys()[0]:
+					list[i][item.keys()[0]] += Append_Dict.values()[0]
+					changed.emit()
+					return
 	
 	
 	if inventory["quick"].size() < QUICK_INV_SIZE: 
@@ -41,12 +41,12 @@ func append_item(Append_Dict:Dictionary):
 	else:
 		print("Inv is full")
 
-func append_item_slot(Append_Dict:Dictionary, slot:String):
-	
-	for item:Dictionary in inventory[slot]:
-		if Append_Dict.keys()[0] == item.keys()[0]:
-			item[item.keys()[0]] += Append_Dict.values()[0]
-			return
+func append_item_slot(Append_Dict:Dictionary, slot:String, stackable:bool):
+	if stackable:
+		for item:Dictionary in inventory[slot]:
+			if Append_Dict.keys()[0] == item.keys()[0]:
+				item[item.keys()[0]] += Append_Dict.values()[0]
+				return
 	
 	if inventory[slot].size() < inventory_sizes[slot]:
 		inventory[slot].append(Append_Dict.duplicate())
@@ -149,12 +149,13 @@ var slot_resolver: Callable   # set by inv_ui
 func drag_and_drop(item_name:String, item_amount:int, source_slot:String):
 	
 	var destination_slot := "none"
+	var inv_item:Inventory_Item =  get_inv_item(item_name).instantiate()
 	destination_slot = slot_resolver.call()
-
+	
 	if destination_slot == "none":
 		throw.emit(get_world_item(item_name), item_amount)
 	elif destination_slot != source_slot:
-		append_item_slot({item_name: item_amount}, destination_slot)
+		append_item_slot({item_name: item_amount}, destination_slot,inv_item.stackable)
 		unequip.emit()
 		remove_item_slot(item_name, item_amount, source_slot)
 
