@@ -1,36 +1,37 @@
-[gd_scene format=3 uid="uid://dmslwauil54sw"]
+[gd_scene format=3 uid="uid://unatgyplpjwe"]
 
-[ext_resource type="Texture2D" uid="uid://bkw6cg6ifch87" path="res://Assets/Sprites/Tmp/Player.png" id="1_2cnp0"]
-[ext_resource type="Script" uid="uid://6nn7tjp22fx3" path="res://Assets/Code/Characters/player.gd" id="1_7elgb"]
-[ext_resource type="Texture2D" uid="uid://ch0lh34s5xib4" path="res://Assets/Sprites/Tmp/hand.png" id="3_54u17"]
+[ext_resource type="PackedScene" uid="uid://c1xrpyqtfkj16" path="res://Assets/Scenes/Characters/Classes/Entity.tscn" id="1_2cnp0"]
+[ext_resource type="Texture2D" uid="uid://bkw6cg6ifch87" path="res://Assets/Sprites/Tmp/Player.png" id="2_54u17"]
+[ext_resource type="Script" uid="uid://b2r5tvbc5gsss" path="res://Assets/Code/Characters/Player.gd" id="2_mye6i"]
+[ext_resource type="Texture2D" uid="uid://ch0lh34s5xib4" path="res://Assets/Sprites/Tmp/hand.png" id="3_mye6i"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3yigi"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bld76"]
 radius = 15.999996
 height = 46.001385
 
-[node name="Player" type="CharacterBody2D" unique_id=1130819150]
-script = ExtResource("1_7elgb")
+[node name="Player" unique_id=982132642 instance=ExtResource("1_2cnp0")]
+script = ExtResource("2_mye6i")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2127083534]
+[node name="Sprite2D" type="Sprite2D" parent="." index="0" unique_id=1501581572]
 scale = Vector2(7.6172028, 7.6172028)
-texture = ExtResource("1_2cnp0")
+texture = ExtResource("2_54u17")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1510381406]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1" unique_id=916518054]
 position = Vector2(0, 30.000002)
 rotation = -1.5714941
-shape = SubResource("CapsuleShape2D_3yigi")
+shape = SubResource("CapsuleShape2D_bld76")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=840007717]
+[node name="Camera2D" type="Camera2D" parent="." index="2" unique_id=825687852]
 position_smoothing_enabled = true
 rotation_smoothing_enabled = true
 
-[node name="Hand" type="Node2D" parent="." unique_id=959135812]
+[node name="Hand" type="Node2D" parent="." index="3" unique_id=1009186889]
 rotation = 3.1415927
 scale = Vector2(6.5688844, 6.5688844)
 
-[node name="EquipedItem" type="Marker2D" parent="Hand" unique_id=1995012472]
+[node name="EquipedItem" type="Marker2D" parent="Hand" index="0" unique_id=982397334]
 position = Vector2(-13.548724, 1.1844672e-06)
 
-[node name="HandSprite2D" type="Sprite2D" parent="Hand" unique_id=2057682923]
+[node name="HandSprite2D" type="Sprite2D" parent="Hand" index="1" unique_id=471720290]
 position = Vector2(-10.504, 0)
-texture = ExtResource("3_54u17")
+texture = ExtResource("3_mye6i")
